@@ -1,0 +1,61 @@
+/* 
+ * CSS3 / LESS loader spinner
+*/
+
+@loaderSize       : 50px;
+@radThickness     : @loaderSize/10;
+@spinSpeed        : 500ms;
+@backgroundColor  : #eee;
+@masksColor       : #fff;
+@elementColor     : #0052ab;
+@middleCircleSize : 70%;
+
+
+
+.animation (@params) {
+	-webkit-animation:@params;
+	-moz-animation:@params;
+	animation:@params;
+}
+
+/* Animation */
+.spin {
+	.animation(spin @spinSpeed infinite linear);
+}
+@-webkit-keyframes spin {
+	to { -webkit-transform: rotate(360deg); } }
+@-moz-keyframes spin {
+	to { -moz-transform: rotate(360deg); } }
+
+
+/* Styling */
+.loader {
+	background-color:@backgroundColor;
+	border-radius:100%;
+	position:relative;
+	height:@loaderSize;
+	width:@loaderSize;
+	overflow:hidden;
+	margin: 30px auto;
+	.a {
+		position:absolute; left:50%; top:50%;
+		margin:-@middleCircleSize/2 0 0 -@middleCircleSize/2;
+		width:@middleCircleSize;
+		height:@middleCircleSize;
+		background-color:@masksColor;
+		border-radius:100%;
+		z-index:3;
+	}
+
+	.b {
+		position:absolute; top:0; bottom:0; left:0; right:0;
+		.c {
+			@thisWidth : @loaderSize*0.2;
+			position:absolute; top:1%; left:50%;
+			margin:0 0 0 -@thisWidth/2;
+			height:14px; width:@thisWidth;
+			background:@elementColor;
+		}
+	}
+
+}

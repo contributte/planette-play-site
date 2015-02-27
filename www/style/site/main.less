@@ -1,0 +1,139 @@
+@import "./bootstrap.less";
+@import "./font-awesome.less";
+@import "./loader.less";
+
+@color-gray: #888;
+@color-search-stripe: #3372cc;
+
+body {
+	background-color: #fff /* #3484D2 */;
+}
+
+h2 {
+	margin: 30px 0;
+	font-size: 40px;
+}
+
+hr.hr-invisible {
+	margin-top: 30px;
+	border: none;
+}
+.content {
+	background-color: #fff;
+}
+
+footer {
+	margin: 30px 0;
+	text-align: center;
+	color: #ccc;
+}
+
+header {
+
+	h1 {
+		font-weight: 200;
+
+		color: @color-gray;
+	}
+
+	&.detail h1 {
+		font-size: 25px;
+		margin: 10px 0 30px 0;
+	}
+
+	&.homepage h1 {
+		text-align: center;
+		font-size: 40px;
+		margin: 30px 0;
+	}
+
+}
+
+.search-stripe {
+	background-color: @color-search-stripe;
+}
+
+.detail-meta {
+	color: @color-gray;
+	font-weight: bold;
+
+	.detail-meta-element {
+		padding-right: 30px;
+	}
+
+}
+
+span.label-snippet {
+	background-color: #AFBD5E;
+}
+
+span.label-tutorial {
+	background-color: #50a055;
+}
+
+span.label-video {
+	background-color: #609ffc;
+}
+
+span.label-article {
+	background-color: #bab9bd;
+}
+
+span.label-link {
+	color: #24316c;
+	border: 1px solid #24316c;
+	background: #ffffff;
+}
+
+/* block tag */
+
+.b-tag__link {
+	color: #ffffff;
+}
+
+.b-tag__link:hover {
+	color: #ffffff;
+}
+
+
+.homepage-search-block {
+
+	margin: 30px 0;
+	font-size: 30px;
+	.homepage-search-input {
+		border-radius: 15px;
+		padding: 15px;
+		box-shadow: none;
+		border: none;
+		background-color: #fff;
+		font-size: 30px;
+		height: auto;
+		border-left: none;
+
+	}
+
+	.input-group-addon {
+		padding: 8px 10px 8px 20px;
+		font-size: 30px;
+		font-weight: normal;
+		line-height: 1;
+		color: @color-gray;
+		text-align: center;
+		background-color: #fff;
+		border: none;
+		border-radius: 15px 0 0 15px;
+		border-right: none
+	}
+
+}
+
+p {
+	line-height: 160%;
+}
+
+.article__heart--liked {
+	color: #dd0000;
+}
+
+@import "search-results";
+@import "category-results";

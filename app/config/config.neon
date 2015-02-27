@@ -1,0 +1,101 @@
+#
+# SECURITY WARNING: it is CRITICAL that this file & directory are NOT accessible directly via a web browser!
+#
+# If you don't protect this directory from direct web access, anybody will be able to see your passwords.
+# http://nette.org/security-warning
+#
+parameters:
+	knowledgebase:
+		cs:
+			title: 'Plannete knowledge base'
+			question: 'začni klást dotaz'
+			noresult: 'Nic jsme nenašli...'
+			shortquestion: 'Málo znaků, pište dál...'
+		en:
+			title: 'Plannete knowledge base'
+
+	article:
+		types:
+			- article
+			- snippet
+			- tutorial
+			- video
+			- link
+
+	database:
+		host: 127.0.0.1
+		dbname: planette
+		user: planette
+		password:
+
+	site:
+		develMode: false
+		version: beta
+
+	email:
+		from: planette@nette.org
+
+	uploadUri: '/data'
+	uploadDir: '%wwwDir%%uploadUri%'
+
+
+extensions:
+    images: Brabijan\Images\DI\ImagesExtension
+
+images:
+	assetsDir: %wwwDir%/data
+
+php:
+	date.timezone: Europe/Prague
+
+
+nette:
+	application:
+		errorPresenter: "Front:Error"
+		mapping:
+			*: App\*Module\Presenters\*Presenter
+
+	database:
+		dsn: 'mysql:host=%database.host%;dbname=%database.dbname%'
+		user: %database.user%
+		password: %database.password%
+		options: {lazy: yes}
+
+	session:
+		expiration: 14 days
+
+
+services:
+	- App\RouterFactory
+	router: @App\RouterFactory::createRouter
+	texy: TexyFactory::createTexy
+	- KnowledgeBase(%knowledgebase%)
+	-
+		class: App\Model\ArticleRepository
+		setup:
+			- setArticleTypes(%article.types%)
+
+	- App\Model\TagRepository
+	userManager:
+		class: Aprila\Model\UserManager
+		setup:
+			- setFilesFolder("%uploadDir%/user","%uploadUri%/user")
+	authorizator:
+		class: Nette\Security\Permission
+		setup:
+			- addRole('guest')
+			- addRole('user')
+			- addRole('admin', 'user')
+			- addRole('root', 'admin')
+			- addResource('Users')
+			- addResource('Article')
+			- allow('admin', 'Users', 'view')
+			- allow('admin', 'Users', 'add')
+			- allow('user', 'Article', 'add')
+			- allow('user', 'Article', 'view')
+			- allow('user', 'Article', 'edit')
+			- allow('user', 'Article', 'like')
+			- allow('admin', 'Article', 'editAll')
+
+
+	- App\Model\ArticleManager

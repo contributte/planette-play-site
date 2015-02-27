@@ -1,0 +1,15 @@
+﻿/* TEAM */
+
+    Web Alchemist: Honza Černý
+    Twitter: @iamchemix
+    Web: honzacerny.com
+    From: Prague, Czech Republic
+
+
+    Developer: Jirka Zralý
+    Twitter: @zraly
+    From: Prague, Czech Republic
+
+/* SITE */
+
+	Nette Framework - nette.org

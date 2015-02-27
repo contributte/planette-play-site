@@ -1,0 +1,21 @@
+{*
+	Page : Edit/Drafts
+*}
+
+{block title}Drafts{/block}
+{block #content}
+<div class="container">
+
+	<div class="row">
+		<div class="col-sm-8 col-sm-offset-2">
+			<h2>Drafts</h2>
+
+			<ul>
+				{foreach $draftsList as $draft}
+					<li><a n:href="Edit:edit $draft->id">{$draft->title}</a></li>
+				{/foreach}
+			</ul>
+		</div>
+	</div>
+</div>
+{/block}

@@ -1,0 +1,26 @@
+{*
+	Edit : edit
+
+	@var $articleDetail
+*}
+
+{block title}Edit article{/block}
+{block #content}
+<div class="container">
+
+	<div class="row">
+		<div class="col-sm-8 col-sm-offset-2">
+			<h2>Edit article: <small><a n:href="Detail:default $articleDetail->id, $articleDetail->slug">{$articleDetail->title}</a></small></h2>
+
+			{include 'form.latte'}
+		</div>
+	</div>
+</div>
+{/block}
+
+{block scripts}
+	{include parent}
+	<script>
+		var saveImagePath = {plink saveImage!}
+	</script>
+{/block}

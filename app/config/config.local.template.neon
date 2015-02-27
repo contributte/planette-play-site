@@ -1,0 +1,9 @@
+parameters:
+	site:
+		develMode: true
+		version: devel
+
+	database:
+		dbname: knowledgebase_devel
+		user: knowledgebase
+		password: mojetajneheslo

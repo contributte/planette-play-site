@@ -1,0 +1,84 @@
+{*
+	Form : article
+*}
+
+	{ifset $user->id}
+		{form articleForm class => 'form-vertical'}
+
+			<div class="form-group">
+				{label language class => 'control-label' /}
+				{input language, class => 'form-control'}
+			</div>
+			<div class="form-group">
+				{label title class => 'control-label' /}
+				{input title class => 'form-control'}
+			</div>
+			<div class="form-group">
+				{label type class => 'control-label' /}
+				{input type class => 'form-control'}
+			</div>
+			<div class="form-group">
+				{input content id=>"code", class => 'form-control'}
+			</div>
+
+			<div class="form-group">
+				<label><input n:name="draft"> document is draft </label> <small>(after save is visible only for author)</small>
+			</div>
+
+			{ifset $form[sendAndView]}
+
+				<div class="form-group">
+					<table n:ifcontent>
+					{foreach $article->related('image') as $image }
+						<tr>
+							<td><img n:img="$image->namespace/$image->filename, 50x50, fill"></td>
+							<td>[*&nbsp;{$image->namespace}/{$image->filename}&nbsp;*]</td>
+							<td>{$image->note}</td>
+						</tr>
+					{/foreach}
+					</table>
+				</div>
+
+				<div class="form-inline">
+                  <div class="form-group">
+                    <input type="file" n:name="file" />
+                  </div>
+                  <div class="form-group">
+                    <input type="text" class="form-control" name="fileNote" placeholder="image description">
+                  </div>
+                  <input type="submit" class="btn btn-default" value="Upload image">
+                </div>
+                <br>
+
+			{else}
+				<p class="small">uložte článek a můžete k němu připojit obrázek</p>
+			{/ifset}
+
+			<div class="form-group">
+				{input tags id => 'tags', style => 'width: 100%', data-tags-default => $defaultTags}
+			</div>
+
+
+
+			<div class="form-group">
+                	<div class="col-lg-6">
+				{input send class => "btn btn-primary"}
+
+				{ifset $form[sendAndView]}
+					{input sendAndView class => "btn btn-secondary"}
+				{/ifset}
+					</div>
+                	<div class="col-lg-6 text-right">
+                		{ifset $form[sendAndView]}
+							<a n:href="Detail:default $articleDetail->id, $articleDetail->slug" class="btn btn-default">back to article</a>
+						{else}
+							<a n:href="Homepage:default" class="btn btn-default">cancel</a>
+						{/ifset}
+                	</div>
+			</div>
+
+
+
+		{/form}
+
+	{/ifset}

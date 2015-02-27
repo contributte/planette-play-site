@@ -1,0 +1,41 @@
+{block header}
+
+	<header class="homepage">
+		<h1>{$knowledgebase->title}</h1>
+	</header>
+
+{/block}
+
+{block content}
+
+	{control search}
+
+<div class="container">
+
+	{foreach $categories as $categoryTag}
+
+		<div class="row" n:tag-if="$iterator->getCounter() % 2 == 0">
+			<div class="col-sm-6">
+
+				<h2>
+					<a n:href="Category: $categoryTag->name">{$categoryTag->name}</a>
+				</h2>
+
+				{foreach $categoryTag->related('article_tag')->where('article.language', $language)->limit(5) as $tag}
+					<h4>
+						<a n:href="Detail:default $tag->article->id, $tag->article->slug, 'language' => $tag->article->language">
+							{$tag->article->title}
+						</a>
+					</h4>
+				{/foreach}
+
+
+			</div>
+		</div>
+	{/foreach}
+</div>
+
+{/block}
+
+
+

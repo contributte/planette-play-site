@@ -1,0 +1,41 @@
+{
+  "name": "inlineattachment",
+  "homepage": "https://github.com/Rovak/InlineAttachment",
+  "authors": [
+    "Roy van Kaathoven <ik@royvankaathoven.nl>"
+  ],
+  "description": "Plugin to embed image links in a textarea",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Rovak/InlineAttachment.git"
+  },
+  "main": [
+    "src/inline-attach.js",
+    "src/angularjs.inline-attach.js",
+    "src/codemirror.inline-attach.js",
+    "src/jquery.inline-attach.js"
+  ],
+  "keywords": [
+    "inline",
+    "attachment",
+    "upload",
+    "angular",
+    "codemirror",
+    "jquery"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "demo",
+    "Gruntfile.js"
+  ],
+  "version": "1.3.2",
+  "_release": "1.3.2",
+  "_resolution": {
+    "type": "version",
+    "tag": "1.3.2",
+    "commit": "d2703b33eb97362acf0b0233ee26edec9e54304c"
+  },
+  "_source": "git://github.com/Rovak/InlineAttachment.git",
+  "_target": "1.3.2",
+  "_originalSource": "inlineattachment"
+}

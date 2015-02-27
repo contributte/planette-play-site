@@ -1,0 +1,68 @@
+
+<div class="search-stripe">
+
+
+	<div class="container">
+
+
+		<div class="row" id="search-component">{* ID is for JS!!! *}
+			<div class="col-sm-8 col-sm-offset-2">
+				<div class="input-group homepage-search-block">
+					<span class="input-group-addon">
+						<span class="fa fa-fw fa-search search-results__loader-placeholder"></span>
+						<span class="fa fa-fw fa-circle-o-notch fa-spin search-results__loader"></span>
+					</span>
+					<input type="text" data-autoselect="ever" class="form-control input-lg homepage-search-input" placeholder="{$knowledgebase->question}" autocomplete="off" value="{$query}" />
+				</div>
+				<div class="search-results-container" n:snippet="searchResults">
+
+					<div class="search-results" n:ifcontent>
+
+
+						{ifset $searchResults}
+							{if count($searchResults) > 0}
+								{foreach $searchResults as $item}
+									<div class="search-results__item" n:if="$item->translation_id == O || $item->language == $language">
+										{capture $tags}
+											{foreach $item->related('article_tag') as $articleTag}
+												{if $articleTag->tag->type === 'normal'}
+													<span class="label label-default"><i class="fa fa-fw fa-tag"></i> {$articleTag->tag->name}</span>
+												{elseif  $articleTag->tag->type === 'type'}
+													{var $type = $articleTag->tag->name}
+												{/if}
+											{/foreach}
+										{/capture}
+										<span n:if="$item->language != $language" class="label label-info pull-right">{$item->language}</span>
+										<h4 class="search-results-item-title"><a href="{plink :Front:Detail:default $item->id, $item->slug, 'language'=>$item->language}">{$item->title}</a></h4>
+										<span class="label label-{$type}">{$type}</span> {$tags|noescape}
+									</div>
+								{/foreach}
+							{else}
+								<p class="search-results__status">
+									{$knowledgebase->noresult}
+								</p>
+							{/if}
+						{/ifset}
+						{ifset $searchStatus}
+
+							{if $searchStatus == 'too-short'}
+								<p class="search-results__status">
+									{$knowledgebase->shortquestion}
+								</p>
+							{/if}
+
+						{/ifset}
+
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	var KnowledgeBaseConfig = {
+		searchUrl: {link search!}
+	};
+</script>
+

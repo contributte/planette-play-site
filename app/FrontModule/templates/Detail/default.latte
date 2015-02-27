@@ -1,0 +1,80 @@
+{*
+	Detail : default
+
+	@var $articleDetail
+*}
+{block title}{$articleDetail->title}{/block}
+
+{block translate}
+	{if $mutations}
+		{foreach $mutations as $mutation}
+			{if $mutation->id == $articleDetail->id}{$mutation->language}
+			{else}
+				<a n:href="Detail:default $mutation->id, $mutation->slug, language=>$mutation->language">{$mutation->language}</a>
+			{/if}
+		{sep} / {/sep}
+		{/foreach}
+	{else}
+		{if $user->isAllowed('Article', 'add')}<a n:href="Edit:translate $articleDetail->id" class="btn btn-default btn-xs">translate article</a>{/if}
+
+		{include parent}
+	{/if}
+{/block}
+
+{block content}
+
+	{control search}
+
+	<div class="container">
+
+		<div class="row">
+			<div class="col-sm-8 col-sm-offset-2">
+				<h2>{$articleDetail->title}</h2>
+
+				<p class="detail-meta">
+					{capture $tags}
+						{foreach $articleDetail->related('article_tag') as $articleTag}
+							{if $articleTag->tag->type === 'normal'}
+								<span class="b-tag label label-default"><a n:href="Homepage:default do=>search-search, search-q=>'#'.$articleTag->tag->name" class="b-tag__link"><span class="fa fa-tag"></span> {$articleTag->tag->name}</a></span>
+							{elseif  $articleTag->tag->type === 'type'}
+								{var $type = $articleTag->tag->name}
+							{/if}
+
+
+						{/foreach}
+					{/capture}
+					<span class="detail-meta-element">
+
+						{if $articleDetail->user && $user->isAllowed('Article', 'like') && $user->id != $articleDetail->user->id}
+							{if $likesUserArticle}
+								<a n:href="dislikeArticle! $articleDetail->id" title="dislike article"><span class="fa fa-heart article__heart--liked"></span> {$articleLikes}</a>
+							{else}
+								<a n:href="likeArticle! $articleDetail->id" title="like article"><span class="fa fa-heart"></span> {$articleLikes}</a>
+							{/if}
+						{else}
+							<span class="fa fa-heart"></span> {$articleLikes}
+						{/if}
+					</span>
+					<span class="detail-meta-element">
+						<span class="fa fa-user"></span>
+						{if $articleDetail->user}
+							{$articleDetail->user->name}
+						{else}
+							?
+						{/if}
+					</span>
+					<span class="detail-meta-element">
+						<span class="label label-{$type}">{$type}</span> {$tags|noescape}
+					</span>
+
+				</p>
+				<hr class="hr-invisible"/>
+				{$articleDetail->content|noescape|texy}
+
+
+				{if $articleDetail->user && $user->isAllowed('Article', 'edit') && $user->id == $articleDetail->user->id}
+					<a n:href="Edit:edit $articleDetail->id" class="btn btn-default">edit</a>
+				{/if}
+			</div>
+		</div>
+	</div>
