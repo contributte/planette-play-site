@@ -26,14 +26,13 @@
         <link rel="stylesheet" href="{$basePath}/style/site/fshl-style.css">
         <!-- endbuild -->
     {/if}
+	<link rel="stylesheet" href="http://files.nette.org/css/combined.css?v=1422462452">
     <!--[if lt IE 9]>
     <script src="{$basePath}/script/vendor/html5shiv.min.js"></script>
     <script src="{$basePath}/script/vendor/nwmatcher.min.js"></script>
     <script src="{$basePath}/script/vendor/selectivizr.min.js"></script>
     <script src="{$basePath}/script/vendor/respond.min.js"></script>
     <![endif]-->
-
-    <link href='http://fonts.googleapis.com/css?family=Roboto:300,500&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 
     <link rel="shortcut icon" href="{$basePath}/favicon.ico">
     {block head}{/block}
@@ -42,23 +41,11 @@
 <body>
     <script> document.documentElement.className+=' js' </script>
 
-	<div class="container">
-		<div class="row">
-			<div class="content col-12 text-right" >
-				{block translate}
-					{if $language == 'cs'}
-						<a n:href="Homepage:default language => 'en'">en</a> / cs
-					{else}
-						en / <a n:href="Homepage:default language => 'cs'">cs</a>
-					{/if}
-				{/block}
-			</div>
-		</div>
-	</div>
-
+	{*{include "nette.org/header.latte"}*}
 
 	{block header}
-		<div class="container">
+		{*
+			<div class="container">
 			<div class="row">
 				<div class="content col-sm-8 col-sm-offset-2">
 					<header class="position-top detail">
@@ -67,31 +54,46 @@
 				</div>
 			</div>
 		</div>
+		*}
 	{/block}
+
+
+
+	<div id="wikimenu">
+		{if $user->isAllowed('Article', 'add')}
+		<div>
+			<div>{block wikiEdit}Edit{/block}</div>
+			<ul>
+				<li><a n:href="Edit:new">Create new article</a></li>
+				<li><a n:href="Edit:drafts">Drafts</a></li>
+			</ul>
+		</div>
+		{/if}
+
+		<div>
+			<div>Lang</div>
+			<ul>
+				{block translate}
+				<li><a n:href="Homepage:default language => 'cs'">cs</a></li>
+				<li><a n:href="Homepage:default language => 'en'">en</a></li>
+				{/block}
+			</ul>
+		</div>
+	</div>
 
 
 
 	<div n:foreach="$flashes as $flash" class="alert alert-{$flash->type}">{$flash->message}</div>
 
-
-	{include content}
-
-
-
+	<div id="main">
+		{include content}
+	</div>
 
 
-		<footer>
-			{if $user->isAllowed('Article', 'add')}
 
-				<span class="btn-group">
-					<a n:href="Edit:new" class="btn btn-default btn-xs">Create new article</a>
-					<a n:href="Edit:drafts" class="btn btn-default btn-xs">Drafts</a>
-				</span>
+	{include "nette.org/footer.latte"}
 
-			{/if}
-		</footer>
-
-
+	{include "nette.org/bar.latte"}
 
 
     {if $production}

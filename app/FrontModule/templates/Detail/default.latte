@@ -5,17 +5,23 @@
 *}
 {block title}{$articleDetail->title}{/block}
 
+
+{block wikiEdit}
+	{if $articleDetail->user && $user->isAllowed('Article', 'edit') && $user->id == $articleDetail->user->id}
+		<a n:href="Edit:edit $articleDetail->id">Edit</a>
+	{/if}
+{/block}
+
 {block translate}
 	{if $mutations}
 		{foreach $mutations as $mutation}
 			{if $mutation->id == $articleDetail->id}{$mutation->language}
 			{else}
-				<a n:href="Detail:default $mutation->id, $mutation->slug, language=>$mutation->language">{$mutation->language}</a>
+				<li><a n:href="Detail:default $mutation->id, $mutation->slug, language=>$mutation->language">{$mutation->language}</a></li>
 			{/if}
-		{sep} / {/sep}
 		{/foreach}
 	{else}
-		{if $user->isAllowed('Article', 'add')}<a n:href="Edit:translate $articleDetail->id" class="btn btn-default btn-xs">translate article</a>{/if}
+		{if $user->isAllowed('Article', 'add')}<li><a n:href="Edit:translate $articleDetail->id">translate article</a></li>{/if}
 
 		{include parent}
 	{/if}
@@ -70,11 +76,7 @@
 				</p>
 				<hr class="hr-invisible"/>
 				{$articleDetail->content|noescape|texy}
-
-
-				{if $articleDetail->user && $user->isAllowed('Article', 'edit') && $user->id == $articleDetail->user->id}
-					<a n:href="Edit:edit $articleDetail->id" class="btn btn-default">edit</a>
-				{/if}
 			</div>
 		</div>
 	</div>
+{/block}
