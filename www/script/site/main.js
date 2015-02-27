@@ -89,7 +89,6 @@ $(function () {
 				// arrow down
 				if (searchResult) {
 					selectedItem++;
-					console.log(selectedItem);
 					if (selectedItem == 1) {
 						// blur the search input
 						searchInput.trigger('blur');
