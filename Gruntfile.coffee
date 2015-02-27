@@ -23,6 +23,13 @@ module.exports = (grunt) ->
             "www/style/site/main.less"
           ]
 
+    watch:
+      styles:
+        files: 'www/style/**/*.less'
+        tasks: ['less']
+        options:
+          interrupt: true
+
     autoprefixer:
       no_dest:
         src: 'www/style/site/app.min.css'
