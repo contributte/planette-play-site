@@ -25,7 +25,7 @@
 									<div class="search-results__item" n:if="$item->translation_id == O || $item->language == $language">
 										{capture $tags}
 											{foreach $item->related('article_tag') as $articleTag}
-												{if $articleTag->tag->type === 'normal'}
+												{if $articleTag->tag->type === 'normal' or $articleTag->tag->type === 'category'}
 													<span class="label label-default"><i class="fa fa-fw fa-tag"></i> {$articleTag->tag->name}</span>
 												{elseif  $articleTag->tag->type === 'type'}
 													{var $type = $articleTag->tag->name}

@@ -34,7 +34,7 @@
 				<p class="detail-meta">
 					{capture $tags}
 						{foreach $articleDetail->related('article_tag') as $articleTag}
-							{if $articleTag->tag->type === 'normal'}
+							{if $articleTag->tag->type === 'normal' or $articleTag->tag->type === 'category'}
 								<span class="b-tag label label-default"><a n:href="Homepage:default do=>search-search, search-q=>'#'.$articleTag->tag->name" class="b-tag__link"><span class="fa fa-tag"></span> {$articleTag->tag->name}</a></span>
 							{elseif  $articleTag->tag->type === 'type'}
 								{var $type = $articleTag->tag->name}
