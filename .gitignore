@@ -3,7 +3,6 @@ temp/*
 vendor/*
 node_modules/*
 .tmp/
-!vendor/others
 
 .DS_Store
 .idea
