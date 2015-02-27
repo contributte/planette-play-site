@@ -8,7 +8,7 @@ parameters:
 	knowledgebase:
 		cs:
 			title: 'Plannete knowledge base'
-			question: 'začni klást dotaz'
+			question: 'začni se ptát'
 			noresult: 'Nic jsme nenašli...'
 			shortquestion: 'Málo znaků, pište dál...'
 		en:
