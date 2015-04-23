@@ -33,9 +33,67 @@ pre {
 		font-size: 231% !important;
 	}
 
+	pre {
+		position: static !important;
+	}
+
+}
+
+.alert-info {
+	color: #31708f !important;
+}
+
+.alert {
+	position: absolute;
+	z-index: 10;
+	width: 80%;
+	margin-top: 145px;
+	left: 10%;
 }
 
 
-h2 {
+div.alert{
+	-webkit-animation:fadeOut 4s;
+	animation:fadeOut 4s;
+	-webkit-animation-fill-mode:forwards;
+	animation-fill-mode: forwards;
+	pointer-events: none;
+}
 
+@-webkit-keyframes fadeOut {
+	0% {
+		-webkit-transform:scale(1);
+		transform: scale(1);
+		opacity: 1;
+	}
+	70% {
+		-webkit-transform:scale(1);
+		transform: scale(1);
+		opacity: 1;
+	}
+	100% {
+		-webkit-transform:scale(2);
+		transform: scale(2);
+		opacity: 0;
+		display:none;
+	}
+}
+
+@keyframes fadeOut {
+	0% {
+		-webkit-transform:scale(1);
+		transform: scale(1);
+		opacity: 1;
+	}
+	70% {
+		-webkit-transform:scale(1);
+		transform: scale(1);
+		opacity: 1;
+	}
+	100% {
+		-webkit-transform:scale(2);
+		transform: scale(2);
+		opacity: 0;
+		display:none;
+	}
 }
