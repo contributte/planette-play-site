@@ -7,3 +7,5 @@ parameters:
 		dbname: knowledgebase_devel
 		user: knowledgebase
 		password: mojetajneheslo
+
+	authKey: 'bamboleeeo bamboleeea'

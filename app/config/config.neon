@@ -76,10 +76,8 @@ services:
 			- setArticleTypes(%article.types%)
 
 	- App\Model\TagRepository
-	userManager:
-		class: Aprila\Model\UserManager
-		setup:
-			- setFilesFolder("%uploadDir%/user","%uploadUri%/user")
+	- App\Security\NetteOrgAuthenticator(%authKey%)
+
 	authorizator:
 		class: Nette\Security\Permission
 		setup:
@@ -99,3 +97,4 @@ services:
 
 
 	- App\Model\ArticleManager
+	- App\Model\UserManager
