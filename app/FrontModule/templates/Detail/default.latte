@@ -75,7 +75,14 @@
 
 				</p>
 				<hr class="hr-invisible"/>
+
 				{$articleDetail->content|noescape|texy}
+				
+				<hr/>
+				<p class="small text-right">
+					Created: {$articleDetail->created_date|timeAgo} |
+					Last modified: {$articleDetail->updated_date|timeAgo}
+				</p>
 			</div>
 		</div>
 	</div>

@@ -31,6 +31,7 @@ class DetailPresenter extends BasePresenter
 	{
 		$template = parent::createTemplate($class);
 		$template->addFilter('texy', callback($this->texy, 'process'));
+		$template->addFilter('timeAgo', 'Helpers::timeAgoInWords');
 
 		return $template;
 	}
