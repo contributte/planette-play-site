@@ -9,6 +9,8 @@
 {block wikiEdit}
 	{if $articleDetail->user && $user->isAllowed('Article', 'edit') && $user->id == $articleDetail->user->id}
 		<a n:href="Edit:edit $articleDetail->id">Edit</a>
+	{else}
+		Edit
 	{/if}
 {/block}
 
