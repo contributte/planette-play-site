@@ -12,7 +12,7 @@ CREATE TABLE `users` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `username` varchar(255) COLLATE utf8_czech_ci NOT NULL,
   `password` char(60) COLLATE utf8_czech_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8_czech_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8_czech_ci DEFAULT NULL,
   `role` varchar(30) COLLATE utf8_czech_ci NOT NULL DEFAULT 'user',
   `active` char(1) COLLATE utf8_czech_ci NOT NULL DEFAULT '1',
   `name` varchar(250) COLLATE utf8_czech_ci NOT NULL,
