@@ -310,7 +310,7 @@ class ArticleRepository extends BaseRepository
 	public function addImage($articleId = 0, $imageFile = '', $imageNamespace = '', $note = '')
 	{
 		$image = [
-			'articleId' => $articleId,
+			'article_id' => $articleId,
 			'namespace' => $imageNamespace,
 			'filename' => $imageFile,
 			'note' => $note,

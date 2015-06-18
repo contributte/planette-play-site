@@ -42,6 +42,10 @@ CREATE TABLE `users_password_reset` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_czech_ci;
 
 
+
+-- Knowledge base
+
+
 DROP TABLE IF EXISTS `article`;
 CREATE TABLE `article` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -58,6 +62,19 @@ CREATE TABLE `article` (
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
   CONSTRAINT `article_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_czech_ci;
+
+
+DROP TABLE IF EXISTS `article_image`;
+CREATE TABLE `article_image` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `namespace` varchar(250) COLLATE utf8_czech_ci NOT NULL,
+  `article_id` int(11) NOT NULL,
+  `filename` varchar(250) COLLATE utf8_czech_ci NOT NULL,
+  `note` text COLLATE utf8_czech_ci NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `article_id` (`article_id`),
+  CONSTRAINT `article_image_ibfk_1` FOREIGN KEY (`article_id`) REFERENCES `article` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_czech_ci;
 
 
@@ -92,14 +109,3 @@ CREATE TABLE `tag` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_czech_ci;
 
-
-CREATE TABLE `article_image` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `namespace` varchar(250) COLLATE utf8_czech_ci NOT NULL,
-  `articleId` int(11) NOT NULL,
-  `filename` varchar(250) COLLATE utf8_czech_ci NOT NULL,
-  `note` text COLLATE utf8_czech_ci NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `articleId` (`articleId`),
-  CONSTRAINT `article_image_ibfk_1` FOREIGN KEY (`articleId`) REFERENCES `article` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_czech_ci;
