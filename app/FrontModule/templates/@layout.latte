@@ -79,6 +79,21 @@
                     {/block}
                 </ul>
             </div>
+
+            <div>
+                <div>
+                    {if $user->isLoggedIn()}
+                        {$user->identity->name}
+                    {else}
+                        <a n:href="Sign:in">Login</a>
+                    {/if}
+                </div>
+                {if $user->isLoggedIn()}
+                    <ul>
+                        <li><a n:href="Sign:out">Logout</a></li>
+                    </ul>
+                {/if}
+            </div>
         </div>
     </div>
 
