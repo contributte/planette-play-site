@@ -164,7 +164,6 @@ class ArticleManager extends Nette\Object
 			'language' => $language,
 			'user_id' => $author,
 			'slug' => Strings::webalize($title),
-			'created_date' => new \DateTime(),
 			'updated_date' => new \DateTime(),
 			'document_state' => $state,
 		);
