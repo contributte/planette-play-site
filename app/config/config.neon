@@ -97,4 +97,5 @@ services:
 
 
 	- App\Model\ArticleManager
+	- App\Model\VersionManager
 	- App\Model\UserManager

@@ -71,10 +71,15 @@
 							?
 						{/if}
 					</span>
+					{* Minimum version of Nette *}
+					<span class="detail-meta-element"> Version:
+						{foreach $articleDetail->related('article_version') as $articleVersion}
+							{$articleVersion->version->version}
+						{/foreach}
+					</span>
 					<span class="detail-meta-element">
 						<span class="label label-{$type}">{$type}</span> {$tags|noescape}
 					</span>
-
 				</p>
 				<hr class="hr-invisible"/>
 

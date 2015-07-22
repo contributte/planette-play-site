@@ -18,6 +18,9 @@ class EditPresenter extends BasePresenter
 	 */
 	public $articleManager;
 
+	/** @var  \App\Model\VersionManager @inject */
+	public $versionManager;
+
 	/**
 	 * @var \Nette\Http\IRequest
 	 * @inject
@@ -152,6 +155,10 @@ class EditPresenter extends BasePresenter
 
 		$form->addSelect('language', 'Language:', $languages);
 
+		$versions = $this->versionManager->getVersions();
+
+		$form->addSelect('version', 'Version:', $versions);
+
 		$types = $this->articleManager->getArticleTypes();
 		if (!empty($types)) {
 			$form->addSelect('type', 'Type', $types);
@@ -256,6 +263,7 @@ class EditPresenter extends BasePresenter
 					$tags,
 					$type,
 					$this->getUser()->getId());
+			$this->versionManager->addVersionToArticle($v->version, $article->id);
 
 			$this->flashMessage('Article was added');
 			$this->redirect('Detail:default', $article->id, $article->slug);
@@ -291,6 +299,8 @@ class EditPresenter extends BasePresenter
 				$tags,
 				$type,
 				$this->getUser()->getId());
+			// .. Update version
+			$this->versionManager->updateVersion($v->version, $this->article->id);
 
 			$this->flashMessage('Article was updated');
 			if (isset($form['sendAndView']) && $form['sendAndView']->isSubmittedBy()) {

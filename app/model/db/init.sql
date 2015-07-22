@@ -109,3 +109,21 @@ CREATE TABLE `tag` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_czech_ci;
 
+
+DROP TABLE IF EXISTS `article_version`;
+CREATE TABLE `article_version` (
+  `article_id` int(11) NOT NULL,
+  `version_id` int(11) NOT NULL,
+  KEY `article_id` (`article_id`),
+  KEY `version_id` (`version_id`),
+  CONSTRAINT `article_version_ibfk_1` FOREIGN KEY (`article_id`) REFERENCES `article` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  CONSTRAINT `article_version_ibfk_2` FOREIGN KEY (`version_id`) REFERENCES `version` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_czech_ci;
+
+
+DROP TABLE IF EXISTS `version`;
+CREATE TABLE `version` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `version` varchar(100) COLLATE utf8_czech_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_czech_ci;
