@@ -24,7 +24,6 @@
         "nette/nette": "~2.3",
         "texy/texy": "v2.6",
         "kukulich/fshl": "~2.1",
-        "aprila/aprila": "~0.1.1",
         "brabijan/images": "@dev"
     }
 }

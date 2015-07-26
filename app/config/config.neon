@@ -76,7 +76,7 @@ services:
 			- setArticleTypes(%article.types%)
 
 	- App\Model\TagRepository
-	- App\Security\NetteOrgAuthenticator(%authKey%)
+	auth: App\Security\NetteOrgAuthenticator(%authKey%)
 
 	authorizator:
 		class: Nette\Security\Permission

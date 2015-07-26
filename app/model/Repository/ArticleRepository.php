@@ -5,7 +5,6 @@
 
 namespace App\Model;
 
-use Aprila\Model\BaseRepository;
 use Nette\Utils\Strings;
 
 class ArticleRepository extends BaseRepository
@@ -40,6 +39,7 @@ class ArticleRepository extends BaseRepository
 		return $this->database->table($this->tableArticleTag);
 	}
 
+
 	/**
 	 * @return \Nette\Database\Table\Selection
 	 */
@@ -59,7 +59,7 @@ class ArticleRepository extends BaseRepository
 			foreach ($tags as $tag) {
 				$this->tableArticleTag()->insert([
 					'article_id' => $id,
-					'tag_id' => $tag
+					'tag_id' => $tag,
 				]);
 			}
 		}
@@ -77,6 +77,7 @@ class ArticleRepository extends BaseRepository
 
 	/**
 	 * @param string $query
+	 *
 	 * @return \Nette\Database\Table\Selection
 	 */
 	public function findFulltext($query)
@@ -112,10 +113,9 @@ class ArticleRepository extends BaseRepository
 		// if there are any tags, add them to the search conditions
 
 		if (count($tags) > 0) {
-			$result->where(':article_tag.tag.name IN ?', $tags );
+			$result->where(':article_tag.tag.name IN ?', $tags);
 			$result->group("article.id")->having("COUNT(DISTINCT :article_tag.tag.name) = ?", count($tags));
 		}
-
 
 		return $result;
 	}
@@ -125,6 +125,7 @@ class ArticleRepository extends BaseRepository
 	 * vraci pocet lika na clanek
 	 *
 	 * @param int $id article id
+	 *
 	 * @return int
 	 */
 	public function countLikesForArticle($id)
@@ -143,6 +144,7 @@ class ArticleRepository extends BaseRepository
 	 *
 	 * @param int $articleId
 	 * @param int $userId
+	 *
 	 * @return bool
 	 */
 	public function addLikeToArticle($articleId, $userId)
@@ -150,7 +152,7 @@ class ArticleRepository extends BaseRepository
 		$data = [
 			'user_id' => $userId,
 			'article_id' => $articleId,
-			'created_date' => new \DateTime()
+			'created_date' => new \DateTime(),
 		];
 		try {
 			$this->database->table('article_like')->insert($data);
@@ -169,6 +171,7 @@ class ArticleRepository extends BaseRepository
 	/**
 	 * @param int $articleId
 	 * @param int $userId
+	 *
 	 * @return bool
 	 */
 	public function removeLikeFromArticle($articleId, $userId)
@@ -185,6 +188,7 @@ class ArticleRepository extends BaseRepository
 	/**
 	 * @param int $articleId
 	 * @param int $userId
+	 *
 	 * @return bool
 	 */
 	public function likesUserArticle($articleId, $userId)
@@ -226,6 +230,7 @@ class ArticleRepository extends BaseRepository
 	 * vraci typ clanku podle tagu
 	 *
 	 * @param int $articleId
+	 *
 	 * @return bool|\Nette\Database\Table\IRow
 	 */
 	public function getArticleTypeTag($articleId)
@@ -249,7 +254,7 @@ class ArticleRepository extends BaseRepository
 	public function findAllMutations($articleId)
 	{
 		$article = $this->get($articleId);
-		if ($article->translation_id){
+		if ($article->translation_id) {
 			return $this->findAll()->where('translation_id', $article->translation_id)->fetchAll();
 		} else {
 			return FALSE;
@@ -260,14 +265,15 @@ class ArticleRepository extends BaseRepository
 	/**
 	 * @param int $articleId
 	 * @param int $userId
+	 *
 	 * @return \Nette\Database\Table\IRow
 	 */
 	public function createTranslationForArticle($articleId = 0, $userId = 0)
 	{
 		$article = $this->get($articleId);
-		// TODO : nemit to tu tak natvrdo ... 
+		// TODO : nemit to tu tak natvrdo ...
 		$newLanguage = 'cs';
-		if ($article->language == 'cs'){
+		if ($article->language == 'cs') {
 			$newLanguage = 'en';
 		}
 
@@ -275,11 +281,11 @@ class ArticleRepository extends BaseRepository
 
 		$translationId = $max->translation + 1;
 
-		$this->update($article->id, ['translation_id'=> $translationId]);
+		$this->update($article->id, ['translation_id' => $translationId]);
 
 		$data = [
 			'translation_id' => $translationId,
-			'title' => $article->title . ' ('.$newLanguage.')',
+			'title' => $article->title . ' (' . $newLanguage . ')',
 			'content' => $article->content,
 			'language' => $newLanguage,
 			'created_date' => new \DateTime(),
@@ -291,8 +297,8 @@ class ArticleRepository extends BaseRepository
 
 		// add same tags as article
 		$tags = [];
-		foreach ($article->related('article_tag') as $tag){
-				$tags[] = $tag->tag->id;
+		foreach ($article->related('article_tag') as $tag) {
+			$tags[] = $tag->tag->id;
 		}
 		$this->addTags($translatedArticle->id, $tags);
 
@@ -305,6 +311,7 @@ class ArticleRepository extends BaseRepository
 	 * @param string $imageFile
 	 * @param string $imageNamespace
 	 * @param string $note
+	 *
 	 * @return bool
 	 */
 	public function addImage($articleId = 0, $imageFile = '', $imageNamespace = '', $note = '')
@@ -326,14 +333,15 @@ class ArticleRepository extends BaseRepository
 	 *
 	 * @param string $category
 	 * @param string $language
+	 *
 	 * @return \Nette\Database\Table\Selection
 	 */
 	public function findAllInCategory($category = '', $language = '')
 	{
 		$result = $this->table()->where('document_state', 'public');
-		$result->where(':article_tag.tag.name = ? AND  :article_tag.tag.type = ?', $category, 'category' );
+		$result->where(':article_tag.tag.name = ? AND  :article_tag.tag.type = ?', $category, 'category');
 
-		if ($language !== ''){
+		if ($language !== '') {
 			$result->where('language', $language);
 		}
 

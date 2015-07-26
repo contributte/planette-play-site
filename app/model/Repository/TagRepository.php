@@ -5,9 +5,6 @@
 
 namespace App\Model;
 
-use Aprila\Model\BaseRepository;
-
-
 class TagRepository extends BaseRepository
 {
 	public $table = 'tag';
@@ -29,6 +26,7 @@ class TagRepository extends BaseRepository
 	{
 		return $this->table()->where('name', $tag)->fetch();
 	}
+
 
 	public function findCategories()
 	{

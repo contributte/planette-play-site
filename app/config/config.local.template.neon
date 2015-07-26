@@ -9,3 +9,6 @@ parameters:
 		password: mojetajneheslo
 
 	authKey: 'bamboleeeo bamboleeea'
+
+services:
+	auth: App\Security\LocalAuthenticator #for local auth
