@@ -42,6 +42,8 @@ class NetteOrgAuthenticator extends Nette\Object implements Nette\Security\IAuth
 			throw new Nette\Security\AuthenticationException("User '$username' not found.", self::IDENTITY_NOT_FOUND);
 		} elseif ($code === 403) {
 			throw new Nette\Security\AuthenticationException('Invalid password.', self::INVALID_CREDENTIAL);
+		} elseif ($code !== 200) {
+			throw new Nette\Security\AuthenticationException("Nette.org endpoint hung with code $code.");
 		}
 
 		$json = Json::decode(trim(mdecrypt_generic($mcrypt, $body)));
