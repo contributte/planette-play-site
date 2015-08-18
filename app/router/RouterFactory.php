@@ -21,6 +21,7 @@ class RouterFactory
 	 */
 	public function createRouter()
 	{
+		Route::$defaultFlags = Route::SECURED;
 		$router = new RouteList();
 
 		$router[] = $frontRouter = new RouteList('Front');
