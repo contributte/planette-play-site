@@ -12,7 +12,7 @@ class NetteOrgAuthenticator extends Nette\Object implements Nette\Security\IAuth
 	/** @var string */
 	private $authKey;
 
-	/** @var UserNamager */
+	/** @var UserManager */
 	private $userManager;
 
 
@@ -80,7 +80,7 @@ class NetteOrgAuthenticator extends Nette\Object implements Nette\Security\IAuth
 	 */
 	private function buildAuthUrl($username, $password, $mcrypt, $iv)
 	{
-		return 'http://nette.org/loginpoint.php?' . http_build_query([
+		return 'https://nette.org/loginpoint.php?' . http_build_query([
 			'name' => $username,
 			'password' => base64_encode(mcrypt_generic($mcrypt, $password)),
 			'iv' => base64_encode($iv),
