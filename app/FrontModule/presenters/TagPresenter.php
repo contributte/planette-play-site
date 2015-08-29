@@ -33,10 +33,4 @@ class TagPresenter extends BasePresenter
 		$this->template->articles = $this->articleManager->findAllByTag($tag, $this->locale);
 	}
 
-
-	public function createComponentSearch()
-	{
-		return new \SearchControl($this->articleManager, $this->translator, $this->locale);
-	}
-
 }

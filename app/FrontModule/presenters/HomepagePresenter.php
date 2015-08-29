@@ -25,10 +25,4 @@ class HomepagePresenter extends BasePresenter
 		$this->template->categories = $this->articleManager->findCategories();
 	}
 
-
-	public function createComponentSearch()
-	{
-		return new \SearchControl($this->articleManager, $this->translator, $this->locale);
-	}
-
 }

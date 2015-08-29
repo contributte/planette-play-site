@@ -39,4 +39,9 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
 		$this->template->production = !$this->siteLayout->develMode;
 		$this->template->version = $this->siteLayout->versionName;
 	}
+
+	public function createComponentSearch()
+	{
+		return new \SearchControl($this->articleManager, $this->translator, $this->locale);
+	}
 }

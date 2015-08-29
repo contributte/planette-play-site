@@ -103,9 +103,4 @@ class DetailPresenter extends BasePresenter
 		}
 	}
 
-
-	public function createComponentSearch()
-	{
-		return new \SearchControl($this->articleManager, $this->translator, $this->locale);
-	}
 }
