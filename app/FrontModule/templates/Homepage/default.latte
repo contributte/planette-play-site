@@ -18,7 +18,7 @@
 			<div class="col-sm-6">
 
 				<h2>
-					<a n:href="Category: $categoryTag->name">{$categoryTag->name}</a>
+					<a n:href="Tag: $categoryTag->name">{$categoryTag->name}</a>
 				</h2>
 
 				{foreach $categoryTag->related('article_tag')->where('article.language', $locale)->limit(5) as $tag}
