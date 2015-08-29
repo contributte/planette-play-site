@@ -53,8 +53,8 @@ class DetailPresenter extends BasePresenter
 			}
 		}
 
-		if ($slug != $this->articleDetail->slug || $this->language != $this->articleDetail->language) {
-			$this->redirect(303, 'Detail:default', [$id, $this->articleDetail->slug, 'language' => $this->articleDetail->language]);
+		if ($slug != $this->articleDetail->slug || $this->locale != $this->articleDetail->language) {
+			$this->redirect(303, 'Detail:default', [$id, $this->articleDetail->slug, 'locale' => $this->articleDetail->language]);
 		}
 
 	}
@@ -106,6 +106,6 @@ class DetailPresenter extends BasePresenter
 
 	public function createComponentSearch()
 	{
-		return new \SearchControl($this->articleManager, $this->knowledgebase, $this->language);
+		return new \SearchControl($this->articleManager, $this->translator, $this->locale);
 	}
 }

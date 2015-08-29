@@ -3,8 +3,7 @@
  * @param array $flashes flash messages
  * @param boolean $production which version devel or production for js and css
  * @param string $version name deployed version
- * @param string $language cs|en
- * @param KnowledgeBase $knowledgebase configuration for application
+ * @param string $locale cs|en
  *}
 
 <!DOCTYPE html>
@@ -12,7 +11,7 @@
 <head>
     <meta charset="utf-8">
 
-    <title>{ifset #title}{include title|striptags} | {/ifset}{$knowledgebase->title}</title>
+    <title>{ifset #title}{include title|striptags} | {/ifset}{_ base.title}</title>
 
     {if $production}
         <link rel="stylesheet" href="{$basePath}/style/site/app.min.css?{$version}">
@@ -44,38 +43,27 @@
 	{*{include "nette.org/header.latte"}*}
 
 	{block header}
-		{*
-			<div class="container">
-			<div class="row">
-				<div class="content col-sm-8 col-sm-offset-2">
-					<header class="position-top detail">
-						<h4><a n:href="Homepage:"><span class="fa fa-home text-muted"></span> {$knowledgebase->title}</a></h4>
-					</header>
-				</div>
-			</div>
-		</div>
-		*}
 	{/block}
 
 
     <div class="page">
         <div class="wikimenu">
             {if $user->isAllowed('Article', 'add')}
-            <div>
-                <div>{block wikiEdit}Edit{/block}</div>
-                <ul>
-                    <li><a n:href="Edit:new">Create new article</a></li>
-                    <li><a n:href="Edit:drafts">Drafts</a></li>
-                </ul>
-            </div>
+                <div>
+                    <div>{block wikiEdit}Edit{/block}</div>
+                    <ul>
+                        <li><a n:href="Edit:new">Create new article</a></li>
+                        <li><a n:href="Edit:drafts">Drafts</a></li>
+                    </ul>
+                </div>
             {/if}
 
             <div>
                 <div>Lang</div>
                 <ul>
                     {block translate}
-                    <li><a n:href="Homepage:default language => 'cs'">cs</a></li>
-                    <li><a n:href="Homepage:default language => 'en'">en</a></li>
+                    <li><a n:href="Homepage:default locale => 'cs'">cs</a></li>
+                    <li><a n:href="Homepage:default locale => 'en'">en</a></li>
                     {/block}
                 </ul>
             </div>

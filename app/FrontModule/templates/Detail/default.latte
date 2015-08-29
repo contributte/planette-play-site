@@ -19,7 +19,7 @@
 		{foreach $mutations as $mutation}
 			{if $mutation->id == $articleDetail->id}{$mutation->language}
 			{else}
-				<li><a n:href="Detail:default $mutation->id, $mutation->slug, language=>$mutation->language">{$mutation->language}</a></li>
+				<li><a n:href="Detail:default $mutation->id, $mutation->slug, locale=>$mutation->language">{$mutation->language}</a></li>
 			{/if}
 		{/foreach}
 	{else}

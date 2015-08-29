@@ -23,19 +23,19 @@ class SearchControl extends Control
 	private $articleManager;
 
 	/**
-	 * @var \KnowledgeBase
+	 * @var \Kdyby\Translation\Translator
 	 */
-	public $knowledgebase;
+	public $translation;
 
-	private $language;
+	private $locale;
 
 
 
-	public function __construct(\App\Model\ArticleManager $articleManager, KnowledgeBase $knowledgeBase, $language = 'en')
+	public function __construct(\App\Model\ArticleManager $articleManager, \Kdyby\Translation\Translator $translator, $locale)
 	{
 		$this->articleManager = $articleManager;
-		$this->knowledgebase = $knowledgeBase;
-		$this->language = $language;
+		$this->translation = $translator;
+		$this->locale = $locale;
 	}
 	/**
 	 * @param $q string
@@ -72,8 +72,7 @@ class SearchControl extends Control
 		$template->setFile(dirname(__FILE__) . '/SearchControl.latte');
 
 		$this->template->query = $this->q;
-		$this->template->knowledgebase = $this->knowledgebase;
-		$this->template->language = $this->language;
+		$this->template->locale = $this->locale;
 		$this->prepareFulltext($this->q);
 
 		$template->render();

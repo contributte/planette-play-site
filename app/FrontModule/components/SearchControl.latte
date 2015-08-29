@@ -1,9 +1,7 @@
 
 <div class="search-stripe">
 
-
 	<div class="container">
-
 
 		<div class="row" id="search-component">{* ID is for JS!!! *}
 			<div class="col-sm-8 col-sm-offset-2">
@@ -12,7 +10,7 @@
 						<span class="fa fa-fw fa-search search-results__loader-placeholder"></span>
 						<span class="fa fa-fw fa-circle-o-notch fa-spin search-results__loader"></span>
 					</span>
-					<input type="text" data-autoselect="ever" class="form-control input-lg homepage-search-input" placeholder="{$knowledgebase->question}" autocomplete="off" value="{$query}" />
+					<input type="text" data-autoselect="ever" class="form-control input-lg homepage-search-input" placeholder="{_ searchControl.placeholder}" autocomplete="off" value="{$query}" />
 				</div>
 				<div class="search-results-container" n:snippet="searchResults">
 
@@ -22,7 +20,7 @@
 						{ifset $searchResults}
 							{if count($searchResults) > 0}
 								{foreach $searchResults as $item}
-									<div class="search-results__item" n:if="$item->translation_id == O || $item->language == $language">
+									<div class="search-results__item" n:if="$item->translation_id == O || $item->language == $locale">
 										{capture $tags}
 											{foreach $item->related('article_tag') as $articleTag}
 												{if $articleTag->tag->type === 'normal' or $articleTag->tag->type === 'category'}
@@ -32,14 +30,14 @@
 												{/if}
 											{/foreach}
 										{/capture}
-										<span n:if="$item->language != $language" class="label label-info pull-right">{$item->language}</span>
+										<span n:if="$item->language != $locale" class="label label-info pull-right">{$item->language}</span>
 										<h4 class="search-results-item-title"><a href="{plink :Front:Detail:default $item->id, $item->slug, 'language'=>$item->language}">{$item->title}</a></h4>
 										<span class="label label-{$type}">{$type}</span> {$tags|noescape}
 									</div>
 								{/foreach}
 							{else}
 								<p class="search-results__status">
-									{$knowledgebase->noresult}
+									{_ searchControl.noResult}
 								</p>
 							{/if}
 						{/ifset}

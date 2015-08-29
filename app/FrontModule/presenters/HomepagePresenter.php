@@ -28,7 +28,7 @@ class HomepagePresenter extends BasePresenter
 
 	public function createComponentSearch()
 	{
-		return new \SearchControl($this->articleManager, $this->knowledgebase, $this->language);
+		return new \SearchControl($this->articleManager, $this->translator, $this->locale);
 	}
 
 }

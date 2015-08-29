@@ -21,7 +21,7 @@
 					<a n:href="Category: $categoryTag->name">{$categoryTag->name}</a>
 				</h2>
 
-				{foreach $categoryTag->related('article_tag')->where('article.language', $language)->limit(5) as $tag}
+				{foreach $categoryTag->related('article_tag')->where('article.language', $locale)->limit(5) as $tag}
 					<h4>
 						<a n:href="Detail:default $tag->article->id, $tag->article->slug, 'language' => $tag->article->language">
 							{$tag->article->title}

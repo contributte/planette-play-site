@@ -13,32 +13,23 @@ use Nette,
  */
 abstract class BasePresenter extends Nette\Application\UI\Presenter
 {
-	/** @var \KnowledgeBase @inject */
-	public $knowledgebase;
+	/**
+	 * @persistent
+	 */
+	public $locale;
 
-	/** @var string @persistent */
-	public $language;
-
-
-	protected function startup()
-	{
-		parent::startup();
-		// TODO : nemit to tu tak natvrdo
-		if ($this->language != 'cs' && $this->language != 'en'){
-			$this->language = 'en';
-//			throw new Nette\Application\BadRequestException;
-		}
-	}
+	/**
+	 * @inject
+	 * @var \Kdyby\Translation\Translator
+	 */
+	public $translator;
 
 
 	public function beforeRender()
 	{
 		parent::beforeRender();
 
-		$this->knowledgebase->setLanguage($this->language);
-
-		$this->template->knowledgebase = $this->knowledgebase;
-		$this->template->language = $this->language;
+		$this->template->locale = $this->locale;
 
 		$this->template->production = !$this->context->parameters['site']['develMode'];
 		$this->template->version = $this->context->parameters['site']['version'];

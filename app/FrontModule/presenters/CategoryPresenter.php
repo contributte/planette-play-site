@@ -30,13 +30,13 @@ class CategoryPresenter extends BasePresenter
 
 		$this->template->selectedCategory = $selectedCategory;
 		$this->template->categories = $this->articleManager->findCategories();
-		$this->template->articles = $this->articleManager->findAllInCategory($category, $this->language);
+		$this->template->articles = $this->articleManager->findAllInCategory($category, $this->locale);
 	}
 
 
 	public function createComponentSearch()
 	{
-		return new \SearchControl($this->articleManager, $this->knowledgebase, $this->language);
+		return new \SearchControl($this->articleManager, $this->translator, $this->locale);
 	}
 
 }

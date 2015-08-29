@@ -5,15 +5,6 @@
 # http://nette.org/security-warning
 #
 parameters:
-	knowledgebase:
-		cs:
-			title: 'Plannete knowledge base'
-			question: 'začni se ptát'
-			noresult: 'Nic jsme nenašli...'
-			shortquestion: 'Málo znaků, pište dál...'
-		en:
-			title: 'Plannete knowledge base'
-
 	article:
 		types:
 			- article
@@ -41,6 +32,11 @@ parameters:
 
 extensions:
     images: Brabijan\Images\DI\ImagesExtension
+    translation: Kdyby\Translation\DI\TranslationExtension
+
+translation:
+	default: cs
+	fallback: [cs_CZ, cs]
 
 images:
 	assetsDir: %wwwDir%/data
@@ -69,7 +65,6 @@ services:
 	- App\RouterFactory
 	router: @App\RouterFactory::createRouter
 	texy: TexyFactory::createTexy
-	- KnowledgeBase(%knowledgebase%)
 	-
 		class: App\Model\ArticleRepository
 		setup:
