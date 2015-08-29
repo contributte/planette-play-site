@@ -8,14 +8,16 @@
 		<div class="col-sm-2">
 
 			<div class="categories-directory categories-directory--panel">
-				{foreach $categories as $category}
-					<a class="categories-directory--link" n:href="Tag: $category->name">{$category->name}</a>
-				{/foreach}
+				<a class="categories-directory--link" n:href="Type: tutorial">Tutorial</a>
+				<a class="categories-directory--link" n:href="Type: article">Article</a>
+				<a class="categories-directory--link" n:href="Type: snippet">Snippet</a>
+				<a class="categories-directory--link" n:href="Type: video">Video</a>
+				<a class="categories-directory--link" n:href="Type: link">Link</a>
 			</div>
 		</div>
 		<div class="col-sm-8">
 
-			<h2>{$selectedTag->name}</h2>
+			<h2>{$selectedType}</h2>
 
 			<div class="category-results" n:ifcontent>
 				{foreach $articles as $item}

@@ -361,4 +361,17 @@ class ArticleRepository extends BaseRepository
 		return $result;
 	}
 
+
+	public function findAllByType($type, $locale)
+	{
+		$result = $this->table()->where('document_state', 'public');
+		$result->where(':article_tag.tag.name = ?', $type);
+
+		if ($locale !== '') {
+			$result->where('language', $locale);
+		}
+
+		return $result;
+	}
+
 }

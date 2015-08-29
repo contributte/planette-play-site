@@ -441,4 +441,10 @@ class ArticleManager extends Nette\Object
 		return $tag;
 	}
 
+
+	public function findAllByType($type, $locale)
+	{
+		return $this->repository->findAllByType($type, $locale);
+	}
+
 }

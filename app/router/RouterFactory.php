@@ -30,6 +30,7 @@ class RouterFactory
 
 		$router[] = $frontRouter = new RouteList('Front');
 		$frontRouter[] = new Route('[<locale=cs [a-z]{2}>/]tag/<category>', 'Tag:default');
+		$frontRouter[] = new Route('[<locale=cs [a-z]{2}>/]type/<type>', 'Type:default');
 		$frontRouter[] = new Route('[<locale=cs [a-z]{2}>/]post/<id>[-<slug>]', 'Detail:default');
 		$frontRouter[] = new Route('[<locale=cs [a-z]{2}>/]<presenter>/<action>[/<id>]', 'Homepage:default');
 
