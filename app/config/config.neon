@@ -22,6 +22,7 @@ parameters:
 	site:
 		develMode: false
 		version: beta
+		ssl: true
 
 	email:
 		from: planette@nette.org
@@ -63,7 +64,7 @@ nette:
 
 services:
 	- App\RouterFactory
-	router: @App\RouterFactory::createRouter
+	router: @App\RouterFactory::createRouter(%site.ssl%)
 	texy: TexyFactory::createTexy
 	-
 		class: App\Model\ArticleRepository

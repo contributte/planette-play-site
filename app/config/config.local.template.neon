@@ -2,6 +2,7 @@ parameters:
 	site:
 		develMode: true
 		version: devel
+		ssl: false
 
 	database:
 		dbname: knowledgebase_devel

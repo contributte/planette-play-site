@@ -9,7 +9,6 @@ use Nette,
 	Nette\Application\Routers\RouteList,
 	Nette\Application\Routers\Route;
 
-
 /**
  * Router factory.
  */
@@ -17,11 +16,16 @@ class RouterFactory
 {
 
 	/**
-	 * @return \Nette\Application\IRouter
+	 * @param bool $enableSsl
+	 *
+	 * @return Nette\Application\IRouter
 	 */
-	public function createRouter()
+	public function createRouter($enableSsl = TRUE)
 	{
-		Route::$defaultFlags = Route::SECURED;
+		if ($enableSsl === TRUE) {
+			Route::$defaultFlags = Route::SECURED;
+		}
+
 		$router = new RouteList();
 
 		$router[] = $frontRouter = new RouteList('Front');
