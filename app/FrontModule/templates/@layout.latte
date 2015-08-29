@@ -38,7 +38,7 @@
     {block head}{/block}
 </head>
 
-<body>
+<body {ifset $bodyClass}class="{$bodyClass}"{/ifset}>
     <script> document.documentElement.className+=' js' </script>
 
 	{*{include "nette.org/header.latte"}*}

@@ -7009,6 +7009,18 @@ p {
 .form-vertical {
   display: block !important;
 }
+.page-detail input.form-control.input-lg.homepage-search-input {
+  padding: 5px;
+  font-size: 14px;
+  border-radius: 0 5px 5px 0;
+}
+.page-detail .homepage-search-block .input-group-addon {
+  border-radius: 5px 0 0 5px;
+  font-size: 10px;
+}
+.page-detail .homepage-search-block {
+  margin: 5px;
+}
 .search-results-container {
   position: relative;
   margin: 0 20px;
