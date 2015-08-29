@@ -140,26 +140,31 @@ class EditPresenter extends BasePresenter
 	{
 		$form = new Form();
 
-		$form->addText('title', 'Title:')
-			->setRequired('Please enter title.');
+		$form->setTranslator($this->translator->domain('ui.forms.createArticle'));
 
-		$form->addTextArea('content', 'Content:')
-			->setRequired('Please enter content.');
+		$form->addText('title', 'title')
+			->setRequired('title-r');
 
-		$form->addCheckbox('draft', 'Draft');
+		$form->addTextArea('content', 'content')
+			->setRequired('content-r');
 
-		$languages = array('cs' => 'česky', 'en' => 'english');
+		$form->addCheckbox('draft', 'draft');
 
-		$form->addSelect('language', 'Language:', $languages);
+		$languages = array(
+			'cs' => 'czech',
+			'en' => 'english',
+		);
+
+		$form->addSelect('language', 'language', $languages);
 
 		$types = $this->articleManager->getArticleTypes();
 		if (!empty($types)) {
-			$form->addSelect('type', 'Type', $types);
+			$form->addSelect('type', 'type', $types);
 		} else {
 			$form->addHidden('type', 'default');
 		}
 
-		$form->addText('tags', 'Tags:');
+		$form->addText('tags', 'tags');
 
 		if (!empty($this->article)) {
 			$tags = $this->articleManager->getTagsAsStringForArticle($this->article->id);
@@ -187,21 +192,21 @@ class EditPresenter extends BasePresenter
 				}
 			}
 
-			$image = $form->addUpload('file', 'File');
+			$image = $form->addUpload('file', 'file');
 			$image->addCondition(Form::FILLED)
-				->addRule(Form::IMAGE, 'Please select image file');
+				->addRule(Form::IMAGE, 'file-r');
 
-			$form->addText('fileNote', 'File description');
+			$form->addText('fileNote', 'filenote');
 
-			$form->addSubmit('send', 'Save');
-			$form->addSubmit('sendAndView', 'Save and view article');
+			$form->addSubmit('send', 'save');
+			$form->addSubmit('sendAndView', 'saveAndViewArticle');
 
 		} else {
 			$defaults = [
 				'draft' => TRUE,
 			];
 			$form->setDefaults($defaults);
-			$form->addSubmit('send', 'Save article');
+			$form->addSubmit('send', 'saveArticle');
 		}
 
 
@@ -257,7 +262,7 @@ class EditPresenter extends BasePresenter
 					$type,
 					$this->getUser()->getId());
 
-			$this->flashMessage('Article was added');
+			$this->flashMessage($this->translator->translate('ui.flash.articleWasAdded'));
 			$this->redirect('Detail:default', $article->id, $article->slug);
 
 		} else {
@@ -279,7 +284,7 @@ class EditPresenter extends BasePresenter
 				}
 				$status = $this->articleManager->assignImageToArticle($this->article->id, $returnPath, "knowledgebase", $note);
 				if ($status) {
-					$this->flashMessage('Image was uploaded');
+					$this->flashMessage($this->translator->translate('ui.flash.imageWasUploaded'));
 				}
 			}
 
@@ -292,7 +297,7 @@ class EditPresenter extends BasePresenter
 				$type,
 				$this->getUser()->getId());
 
-			$this->flashMessage('Article was updated');
+			$this->flashMessage($this->translator->translate('ui.flash.articleWasUpdated'));
 			if (isset($form['sendAndView']) && $form['sendAndView']->isSubmittedBy()) {
 				$this->redirect('Detail:default', $this->article->id, $this->article->slug);
 			} else {

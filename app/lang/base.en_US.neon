@@ -1,1 +1,4 @@
-title: "Planette"
+title:
+	main: Planette
+	editArticle: Edit article
+	newArticle: New article

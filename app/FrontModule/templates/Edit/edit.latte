@@ -4,13 +4,13 @@
 	@var $articleDetail
 *}
 
-{block title}Edit article{/block}
+{block title}{_ base.title.editArticle}{/block}
 {block #content}
 <div class="container">
 
 	<div class="row">
 		<div class="col-sm-8 col-sm-offset-2">
-			<h2>Edit article: <small><a n:href="Detail:default $articleDetail->id, $articleDetail->slug">{$articleDetail->title}</a></small></h2>
+			<h2>{_ ui.editArticle}<small><a n:href="Detail:default $articleDetail->id, $articleDetail->slug">{$articleDetail->title}</a></small></h2>
 
 			{include 'form.latte'}
 		</div>

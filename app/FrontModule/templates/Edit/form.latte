@@ -22,7 +22,7 @@
 			</div>
 
 			<div class="form-group">
-				<label><input n:name="draft"> document is draft </label> <small>(after save is visible only for author)</small>
+				<label><input n:name="draft"> {_ ui.documentIsDraft} </label> <small>{_ ui.afterSaveIsVisibleOnlyForAuthor}</small>
 			</div>
 
 			{ifset $form[sendAndView]}
@@ -51,14 +51,12 @@
                 <br>
 
 			{else}
-				<p class="small">uložte článek a můžete k němu připojit obrázek</p>
+				<p class="small">{_ ui.saveArticleForAddImage}</p>
 			{/ifset}
 
 			<div class="form-group">
 				{input tags id => 'tags', style => 'width: 100%', data-tags-default => $defaultTags}
 			</div>
-
-
 
 			<div class="form-group">
                 	<div class="col-lg-6">
@@ -70,14 +68,12 @@
 					</div>
                 	<div class="col-lg-6 text-right">
                 		{ifset $form[sendAndView]}
-							<a n:href="Detail:default $articleDetail->id, $articleDetail->slug" class="btn btn-default">back to article</a>
+							<a n:href="Detail:default $articleDetail->id, $articleDetail->slug" class="btn btn-default">{_ ui.backToArticle}</a>
 						{else}
-							<a n:href="Homepage:default" class="btn btn-default">cancel</a>
+							<a n:href="Homepage:default" class="btn btn-default">{_ ui.cancel}</a>
 						{/ifset}
                 	</div>
 			</div>
-
-
 
 		{/form}
 

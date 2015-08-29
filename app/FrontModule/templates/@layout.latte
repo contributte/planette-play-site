@@ -12,7 +12,7 @@
     <meta charset="utf-8">
     <meta name="robots" content="noindex, nofollow">
 
-    <title>{ifset #title}{include title|striptags} | {/ifset}{_ base.title}</title>
+    <title>{ifset #title}{include title|striptags} | {/ifset}{_ base.title.main}</title>
 
     {if $production}
         <link rel="stylesheet" href="{$basePath}/style/site/app.min.css?{$version}">
@@ -53,8 +53,8 @@
                 <div>
                     <div>{block wikiEdit}Edit{/block}</div>
                     <ul>
-                        <li><a n:href="Edit:new">Create new article</a></li>
-                        <li><a n:href="Edit:drafts">Drafts</a></li>
+                        <li><a n:href="Edit:new">{_ ui.newArticle}</a></li>
+                        <li><a n:href="Edit:drafts">{_ ui.drafts}</a></li>
                     </ul>
                 </div>
             {/if}
@@ -63,8 +63,8 @@
                 <div>Lang</div>
                 <ul>
                     {block translate}
-                    <li><a n:href="Homepage:default locale => 'cs'">cs</a></li>
-                    <li><a n:href="Homepage:default locale => 'en'">en</a></li>
+                    <li><a n:href="Homepage:default locale => 'cs'">{_ ui.cs}</a></li>
+                    <li><a n:href="Homepage:default locale => 'en'">{_ ui.en}</a></li>
                     {/block}
                 </ul>
             </div>
@@ -74,12 +74,12 @@
                     {if $user->isLoggedIn()}
                         {$user->identity->name}
                     {else}
-                        <a n:href="Sign:in">Login</a>
+                        <a n:href="Sign:in">{_ ui.login}</a>
                     {/if}
                 </div>
                 {if $user->isLoggedIn()}
                     <ul>
-                        <li><a n:href="Sign:out">Logout</a></li>
+                        <li><a n:href="Sign:out">{_ ui.logout}</a></li>
                     </ul>
                 {/if}
             </div>

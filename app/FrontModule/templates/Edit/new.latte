@@ -1,13 +1,13 @@
 {*
 	Edit : new
 *}
-{block title}New article{/block}
+{block title}{_ base.title.newArticle}{/block}
 {block #content}
 	<div class="container">
 
 		<div class="row">
 			<div class="col-sm-8 col-sm-offset-2">
-				<h2>New article</h2>
+				<h2>{_ base.title.newArticle}</h2>
 
 				{include 'form.latte'}
 			</div>

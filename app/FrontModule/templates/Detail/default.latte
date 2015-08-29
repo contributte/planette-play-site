@@ -8,9 +8,9 @@
 
 {block wikiEdit}
 	{if $articleDetail->user && $user->isAllowed('Article', 'edit') && $user->id == $articleDetail->user->id}
-		<a n:href="Edit:edit $articleDetail->id">Edit</a>
+		<a n:href="Edit:edit $articleDetail->id">{_ ui.edit}</a>
 	{else}
-		Edit
+		{_ ui.edit}
 	{/if}
 {/block}
 
@@ -23,7 +23,7 @@
 			{/if}
 		{/foreach}
 	{else}
-		{if $user->isAllowed('Article', 'add')}<li><a n:href="Edit:translate $articleDetail->id">translate article</a></li>{/if}
+		{if $user->isAllowed('Article', 'add')}<li><a n:href="Edit:translate $articleDetail->id">{_ ui.translateArticle}</a></li>{/if}
 
 		{include parent}
 	{/if}
@@ -79,11 +79,11 @@
 				<hr class="hr-invisible"/>
 
 				{$articleDetail->content|noescape|texy}
-				
+
 				<hr/>
 				<p class="small text-right">
-					Created: {$articleDetail->created_date|timeAgo} |
-					Last modified: {$articleDetail->updated_date|timeAgo}
+					{_ ui.created} {$articleDetail->created_date|timeAgo} |
+					{_ ui.lastModified} {$articleDetail->updated_date|timeAgo}
 				</p>
 			</div>
 		</div>
