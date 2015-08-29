@@ -419,10 +419,26 @@ class ArticleManager extends Nette\Object
 	public function getCategory($category = '')
 	{
 		$category = $this->tagRepository->getByName($category);
+
 		if ($category && $category->type == 'category'){
 			return $category;
 		}
 		return FALSE;
+
+	}
+
+
+	public function findAllByTag($tag = '', $language = '')
+	{
+		return $this->repository->findAllByTag($tag, $language);
+	}
+
+
+	public function getTag($tag = '')
+	{
+		$tag = $this->tagRepository->getByName($tag);
+
+		return $tag;
 	}
 
 }

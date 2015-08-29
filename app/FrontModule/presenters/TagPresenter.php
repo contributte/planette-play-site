@@ -10,7 +10,7 @@ use Nette\Application\BadRequestException;
 /**
  * Homepage presenter.
  */
-class CategoryPresenter extends BasePresenter
+class TagPresenter extends BasePresenter
 {
 
 	/**
@@ -20,17 +20,17 @@ class CategoryPresenter extends BasePresenter
 	public $articleManager;
 
 
-	public function renderDefault($category = '')
+	public function renderDefault($tag = '')
 	{
-		$selectedCategory = $this->articleManager->getCategory($category);
+		$selectedTag = $this->articleManager->getTag($tag);
 
-		if (!$selectedCategory){
+		if (!$selectedTag){
 			throw new BadRequestException;
 		}
 
-		$this->template->selectedCategory = $selectedCategory;
+		$this->template->selectedTag = $selectedTag;
 		$this->template->categories = $this->articleManager->findCategories();
-		$this->template->articles = $this->articleManager->findAllInCategory($category, $this->locale);
+		$this->template->articles = $this->articleManager->findAllByTag($tag, $this->locale);
 	}
 
 

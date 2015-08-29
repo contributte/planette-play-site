@@ -9,24 +9,25 @@
 
 			<div class="categories-directory categories-directory--panel">
 				{foreach $categories as $category}
-					<a class="categories-directory--link" n:href="Category: $category->name">{$category->name}</a>
+					<a class="categories-directory--link" n:href="Tag: $category->name">{$category->name}</a>
 				{/foreach}
 			</div>
 		</div>
 		<div class="col-sm-8">
 
-			<h2>{$selectedCategory->name}</h2>
+			<h2>{$selectedTag->name}</h2>
 
 			<div class="category-results" n:ifcontent>
 				{foreach $articles as $item}
             		<div class="category-results__item" n:if="$item->translation_id == O || $item->language == $locale">
 						{capture $tags}
 							{foreach $item->related('article_tag') as $articleTag}
-								{if $articleTag->tag->type === 'normal'}
-									<span class="label label-default"><i class="fa fa-fw fa-tag"></i> {$articleTag->tag->name}</span>
+								{if $articleTag->tag->type === 'normal' or $articleTag->tag->type === 'category'}
+									<span class="b-tag label label-default"><a n:href="Tag:default $articleTag->tag->name" class="b-tag__link"><span class="fa fa-tag"></span> {$articleTag->tag->name}</a></span>
 								{elseif  $articleTag->tag->type === 'type'}
 									{var $type = $articleTag->tag->name}
 								{/if}
+
 							{/foreach}
 						{/capture}
 						<span n:if="$item->language != $locale" class="label label-info pull-right">{$item->language}</span>
