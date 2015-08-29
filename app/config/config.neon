@@ -21,7 +21,7 @@ parameters:
 
 	site:
 		develMode: false
-		version: beta
+		versionName: beta
 		ssl: true
 
 	email:
@@ -65,6 +65,7 @@ nette:
 services:
 	- App\RouterFactory
 	router: @App\RouterFactory::createRouter(%site.ssl%)
+	- App\Model\SiteLayout(%site%)
 	texy: TexyFactory::createTexy
 	-
 		class: App\Model\ArticleRepository

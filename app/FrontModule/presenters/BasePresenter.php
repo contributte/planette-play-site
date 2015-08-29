@@ -24,14 +24,19 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
 	 */
 	public $translator;
 
+	/**
+	 * @inject
+	 * @var \App\Model\SiteLayout
+	 */
+	public $siteLayout;
+
 
 	public function beforeRender()
 	{
 		parent::beforeRender();
 
 		$this->template->locale = $this->locale;
-
-		$this->template->production = !$this->context->parameters['site']['develMode'];
-		$this->template->version = $this->context->parameters['site']['version'];
+		$this->template->production = !$this->siteLayout->develMode;
+		$this->template->version = $this->siteLayout->versionName;
 	}
 }
