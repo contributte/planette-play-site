@@ -2,11 +2,14 @@ $(function () {
 
     $.nette.init();
 
-    // dirty prototype version
-    var autofocus = $('[data-autoselect]');
-    if (autofocus[0]){
-        autofocus[0].focus();
-    }
+
+	// dirty prototype version
+	if ($('body').hasClass('page-homepage')){
+		var autofocus = $('[data-autoselect]');
+		if (autofocus[0]){
+			autofocus[0].focus();
+		}
+	}
 
     var homepage = $('#search-component');
     if (homepage[0] && KnowledgeBaseConfig) {
