@@ -21,7 +21,7 @@ parameters:
 
 	site:
 		develMode: false
-		versionName: beta
+		versionName: beta2
 		ssl: true
 
 	email:
