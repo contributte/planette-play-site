@@ -31,7 +31,7 @@
 											{/foreach}
 										{/capture}
 										<span n:if="$item->language != $locale" class="label label-info pull-right">{$item->language}</span>
-										<h4 class="search-results-item-title"><a href="{plink :Front:Detail:default $item->id, $item->slug, 'language'=>$item->language}">{$item->title}</a></h4>
+										<h4 class="search-results-item-title"><a href="{plink :Front:Detail:default $item->id, $item->slug, 'locale'=>$item->language}">{$item->title}</a></h4>
 										<span class="label label-{$type}">{$type}</span> {$tags|noescape}
 									</div>
 								{/foreach}
