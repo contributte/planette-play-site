@@ -44,6 +44,7 @@
 	{*{include "nette.org/header.latte"}*}
 
 	{block header}
+
 	{/block}
 
 
@@ -92,8 +93,12 @@
 	<div n:foreach="$flashes as $flash" class="alert alert-{$flash->type}">{$flash->message}</div>
 
 	<div class="main">
-		{include content}
-	</div>
+
+        {control search}
+
+        {include content}
+
+    </div>
 
 
 

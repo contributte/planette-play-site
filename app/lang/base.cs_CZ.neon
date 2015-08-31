@@ -2,3 +2,7 @@ title:
 	main: Planette
 	editArticle: Editovat článek
 	newArticle: Nový článek
+
+
+homepage:
+	selectedArticles: "Vybrané články"

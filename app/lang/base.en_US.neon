@@ -2,3 +2,7 @@ title:
 	main: Planette
 	editArticle: Edit article
 	newArticle: New article
+
+
+homepage:
+	selectedArticles: "Selected articles"

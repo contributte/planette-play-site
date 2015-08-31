@@ -15,12 +15,27 @@
 
 {block content}
 
-	{control search}
-
 <div class="container" id="page">
 
-	{foreach $categories as $categoryTag}
+	<div class="row">
+		<div class="col-sm-12">
+			<ul class="nav nav-pills">
+				<li><a n:href="Type: tutorial">{_ ui.nav.tutorial}</a></li>
+				<li><a n:href="Type: article">{_ ui.nav.article}</a></li>
+				<li><a n:href="Type: snippet">{_ ui.nav.snippet}</a></li>
+				<li><a n:href="Type: video">{_ ui.nav.video}</a></li>
+				<li><a n:href="Type: link">{_ ui.nav.link}</a></li>
+			</ul>
+		</div>
+	</div>
 
+	<div class="row">
+		<div class="col-sm-12">
+			<h3>{_ base.homepage.selectedArticles}</h3>
+		</div>
+	</div>
+
+	{foreach $categories as $categoryTag}
 		<div class="row" n:tag-if="$iterator->getCounter() % 2 == 0">
 			<div class="col-sm-6">
 
@@ -40,6 +55,7 @@
 			</div>
 		</div>
 	{/foreach}
+
 </div>
 
 {/block}

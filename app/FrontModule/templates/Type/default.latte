@@ -1,23 +1,21 @@
 {block content}
 
-	{control search}
-
 <div class="container">
 
 	<div class="row">
 		<div class="col-sm-2">
 
 			<div class="categories-directory categories-directory--panel">
-				<a class="categories-directory--link" n:href="Type: tutorial">Tutorial</a>
-				<a class="categories-directory--link" n:href="Type: article">Article</a>
-				<a class="categories-directory--link" n:href="Type: snippet">Snippet</a>
-				<a class="categories-directory--link" n:href="Type: video">Video</a>
-				<a class="categories-directory--link" n:href="Type: link">Link</a>
+				<a class="categories-directory--link" n:href="Type: tutorial">{_ ui.nav.tutorial}</a>
+				<a class="categories-directory--link" n:href="Type: article">{_ ui.nav.article}</a>
+				<a class="categories-directory--link" n:href="Type: snippet">{_ ui.nav.snippet}</a>
+				<a class="categories-directory--link" n:href="Type: video">{_ ui.nav.video}</a>
+				<a class="categories-directory--link" n:href="Type: link">{_ ui.nav.link}</a>
 			</div>
 		</div>
 		<div class="col-sm-8">
 
-			<h2>{$selectedType}</h2>
+			<h2>{_ ui.nav.$selectedType}</h2>
 
 			<div class="category-results" n:ifcontent>
 				{foreach $articles as $item}

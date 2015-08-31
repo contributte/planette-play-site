@@ -16,6 +16,13 @@ created: "Created:"
 lastModified: "Last modified:"
 
 
+nav:
+	tutorial: "Tutorials"
+	article: "Articles"
+	snippet: "Snippets"
+	video: "Videos"
+	link: "Links"
+
 forms:
 	createArticle:
 		title: "Title:"

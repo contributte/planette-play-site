@@ -16,6 +16,13 @@ created: "Vytvořeno:"
 lastModified: "Poslední modifikace:"
 
 
+nav:
+	tutorial: "Tutoriály"
+	article: "Články"
+	snippet: "Snippety"
+	video: "Videa"
+	link: "Odkazy"
+
 forms:
 	createArticle:
 		title: "Titulek:"
