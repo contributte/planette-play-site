@@ -21,21 +21,7 @@
 
 			<div class="category-results" n:ifcontent>
 				{foreach $articles as $item}
-            		<div class="category-results__item" n:if="$item->translation_id == O || $item->language == $locale">
-						{capture $tags}
-							{foreach $item->related('article_tag') as $articleTag}
-								{if $articleTag->tag->type === 'normal' or $articleTag->tag->type === 'category'}
-									<span class="b-tag label label-default"><a n:href="Tag:default $articleTag->tag->name" class="b-tag__link"><span class="fa fa-tag"></span> {$articleTag->tag->name}</a></span>
-								{elseif  $articleTag->tag->type === 'type'}
-									{var $type = $articleTag->tag->name}
-								{/if}
-
-							{/foreach}
-						{/capture}
-						<span n:if="$item->language != $locale" class="label label-info pull-right">{$item->language}</span>
-						<h4 class="category-results__title"><a n:href="Detail:default $item->id, $item->slug, 'language'=>$item->language">{$item->title}</a></h4>
-						<span class="label label-{$type}"><a n:href="Type:default $type" class="b-tag__link">{$type}</a></span> {$tags|noescape}
-					</div>
+					{include "../components/articleListView.latte", 'article' => $item}
 				{/foreach}
 			</div>
 

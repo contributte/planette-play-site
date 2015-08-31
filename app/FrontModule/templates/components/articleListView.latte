@@ -1,0 +1,18 @@
+{*
+	@param $article
+*}
+<div class="category-results__item" n:if="$article->translation_id == O || $article->language == $locale">
+	{capture $tags}
+		{foreach $article->related('article_tag') as $articleTag}
+			{if $articleTag->tag->type === 'normal' or $articleTag->tag->type === 'category'}
+				<span class="b-tag label label-default"><a n:href="Tag:default $articleTag->tag->name" class="b-tag__link"><span class="fa fa-tag"></span> {$articleTag->tag->name}</a></span>
+			{elseif  $articleTag->tag->type === 'type'}
+				{var $type = $articleTag->tag->name}
+			{/if}
+
+		{/foreach}
+	{/capture}
+	<span n:if="$article->language != $locale" class="label label-info pull-right">{$article->language}</span>
+	<h4 class="category-results__title"><a n:href="Detail:default $article->id, $article->slug, 'language'=>$article->language">{$article->title}</a></h4>
+	<span class="label label-{$type}"><a n:href="Type:default $type" class="b-tag__link">{$type}</a></span> {$tags|noescape}
+</div>
