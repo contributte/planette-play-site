@@ -30,6 +30,12 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
 	 */
 	public $siteLayout;
 
+	/**
+	 * @inject
+	 * @var \App\Model\ArticleManager
+	 */
+	public $articleManager;
+
 
 	public function beforeRender()
 	{

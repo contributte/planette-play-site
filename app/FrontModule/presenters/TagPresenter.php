@@ -13,13 +13,6 @@ use Nette\Application\BadRequestException;
 class TagPresenter extends BasePresenter
 {
 
-	/**
-	 * @inject
-	 * @var \App\Model\ArticleManager
-	 */
-	public $articleManager;
-
-
 	public function renderDefault($tag = '')
 	{
 		$selectedTag = $this->articleManager->getTag($tag);

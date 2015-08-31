@@ -13,13 +13,6 @@ use Nette\Application\BadRequestException;
 class TypePresenter extends BasePresenter
 {
 
-	/**
-	 * @inject
-	 * @var \App\Model\ArticleManager
-	 */
-	public $articleManager;
-
-
 	public function renderDefault($type = '')
 	{
 		// TODO: check

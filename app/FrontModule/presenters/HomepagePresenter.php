@@ -13,13 +13,6 @@ namespace App\FrontModule\Presenters;
 class HomepagePresenter extends BasePresenter
 {
 
-	/**
-	 * @inject
-	 * @var \App\Model\ArticleManager
-	 */
-	public $articleManager;
-
-
 	public function renderDefault()
 	{
 		$this->template->categories = $this->articleManager->findCategories();

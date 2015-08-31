@@ -10,9 +10,6 @@ class DetailPresenter extends BasePresenter
 {
 	use \Brabijan\Images\TImagePipe;
 
-	/** @var \App\Model\ArticleManager @inject */
-	public $articleManager;
-
 	/** @var \Texy @inject */
 	public $texy;
 
