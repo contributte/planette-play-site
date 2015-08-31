@@ -1,2 +1,4 @@
 placeholder: "Zadej dotaz"
 noResult: "Žádný záznam"
+shortQuestion: "Příliš krátký dotaz"
+
