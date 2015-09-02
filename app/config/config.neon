@@ -32,8 +32,10 @@ parameters:
 
 
 extensions:
-    images: Brabijan\Images\DI\ImagesExtension
-    translation: Kdyby\Translation\DI\TranslationExtension
+	images: Brabijan\Images\DI\ImagesExtension
+	translation: Kdyby\Translation\DI\TranslationExtension
+	migrations: Nextras\Migrations\Bridges\NetteDI\MigrationsExtension
+	kdyby.console: Kdyby\Console\DI\ConsoleExtension
 
 translation:
 	default: cs
@@ -41,6 +43,12 @@ translation:
 
 images:
 	assetsDir: %wwwDir%/data
+
+migrations:
+	dir: %appDir%/../migrations # migrations base directory
+	driver: mysql               # pgsql or mysql
+	dbal: nette               # nextras, nette, doctrine or dibi
+
 
 php:
 	date.timezone: Europe/Prague
