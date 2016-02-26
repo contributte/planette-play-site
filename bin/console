@@ -1,6 +1,8 @@
-#!/Applications/XAMPP/bin/php
+#!/usr/bin/env php
 <?php
+
 $dic = require __DIR__ . '/../app/bootstrap.php';;
+
 /** @var Nette\Application\Application $app */
 $app = $dic->getByType('Nette\Application\Application');
 $app->run();
