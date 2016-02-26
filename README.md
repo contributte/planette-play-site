@@ -1,9 +1,6 @@
 Pla.Nette
 ==========================
 
-Based on Aprila KnowledgeBase - simple article based knowledge base system
-
-
 Note: Login page is : /sign/in and logout page /sign/out
 
 
@@ -13,10 +10,7 @@ Installation
 
 ### 1) Get code
 
-a) or clone repository `git clone git@github.com:chemix/planette.git`
-
-b) or download project from github https://github.com/chemix/planette/archive/master.zip
-
+clone repository `git clone git@github.com:chemix/planette.git`
 
 
 ## 2) Composer
@@ -35,18 +29,22 @@ and for data
 `$ chmod -R a+rw www/data`
 
 
-### 4) SQL init
+### 4) App configuration
 
-init SQL from `app/model/db/init.sql` to your database.
+Copy file *app/config/config.local.template.neon* as *app/config/config.local.neon*
+and update database credentials.
+
+
+### 5) SQL init
 
 default user is "architect" and password is "kreslo"
 
-if you need dummy data, use `app/model/db/dummydata.sql`
-users chemix and medhi have same password "kreslo"
+Run nextras migration script
+
+`./bin/console mig:res`
 
 
-
-### 5) Apache
+### 6) Apache
 
 update your file `etc/hosts` and add new line
 
@@ -61,13 +59,6 @@ apache/virtuals-list
     ServerAlias plannete.192.168.1.111.xip.io
 </VirtualHost>
 ```
-
-
-### 6) App configuration
-
-Copy file *app/config/config.local.template.neon* as *app/config/config.local.neon*
-and update database credentials.
-
 
 
 
