@@ -9,125 +9,104 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <meta name="robots" content="noindex, nofollow">
+	<meta charset="utf-8">
+	<meta name="robots" content="noindex, nofollow">
 
-    <title>{ifset #title}{include title|striptags} | {/ifset}{_ base.title.main}</title>
+	<title>{ifset #title}{include title|striptags} | {/ifset}{_ base.title.main}</title>
 
-    {if $production}
-        <link rel="stylesheet" href="{$basePath}/style/site/app.min.css?{$version}">
-    {else}
-        <!-- build:css {$basePath}/style/site/app.min.css -->
-        <link rel="stylesheet" href="{$basePath}/style/site/main.css">
-        <link rel="stylesheet" href="{$basePath}/components/codemirror/lib/codemirror.css">
-        <link rel="stylesheet" href="{$basePath}/components/codemirror/theme/monokai.css">
-        <link rel="stylesheet" href="{$basePath}/components/select2/select2.css">
-        <link rel="stylesheet" href="{$basePath}/style/site/select2-bootstrap.css">
-        <link rel="stylesheet" href="{$basePath}/style/site/fshl-style.css">
-        <!-- endbuild -->
-    {/if}
-	<link rel="stylesheet" href="https://files.nette.org/css/combined.css?v=1426725421">
-    <!--[if lt IE 9]>
-    <script src="{$basePath}/script/vendor/html5shiv.min.js"></script>
-    <script src="{$basePath}/script/vendor/nwmatcher.min.js"></script>
-    <script src="{$basePath}/script/vendor/selectivizr.min.js"></script>
-    <script src="{$basePath}/script/vendor/respond.min.js"></script>
-    <![endif]-->
+	{if $production}
+		<link rel="stylesheet" href="{$basePath}/style/site/app.min.css?{$version}">
+	{else}
+		<!-- build:css {$basePath}/style/site/app.min.css -->
+		<link rel="stylesheet" href="{$basePath}/style/site/main.css">
+		<link rel="stylesheet" href="{$basePath}/components/codemirror/lib/codemirror.css">
+		<link rel="stylesheet" href="{$basePath}/components/codemirror/theme/monokai.css">
+		<link rel="stylesheet" href="{$basePath}/components/select2/select2.css">
+		<link rel="stylesheet" href="{$basePath}/style/site/select2-bootstrap.css">
+		<link rel="stylesheet" href="{$basePath}/style/site/fshl-style.css">
+		<!-- endbuild -->
+	{/if}
+	<!--[if lt IE 9]>
+	<script src="{$basePath}/script/vendor/html5shiv.min.js"></script>
+	<script src="{$basePath}/script/vendor/nwmatcher.min.js"></script>
+	<script src="{$basePath}/script/vendor/selectivizr.min.js"></script>
+	<script src="{$basePath}/script/vendor/respond.min.js"></script>
+	<![endif]-->
 
-    <link rel="shortcut icon" href="{$basePath}/favicon.ico">
-    {block head}{/block}
+	<link rel="shortcut icon" href="{$basePath}/favicon.ico">
+	{block head}{/block}
 </head>
 
 <body {ifset $bodyClass}class="{$bodyClass}"{/ifset}>
-    <script> document.documentElement.className+=' js' </script>
+<script> document.documentElement.className += ' js' </script>
 
-	{*{include "nette.org/header.latte"}*}
+{*{include "nette.org/header.latte"}*}
 
-	{block header}
+{block header}
 
-	{/block}
+{/block}
 
+<div n:foreach="$flashes as $flash" class="alert alert-{$flash->type}">{$flash->message}</div>
 
-    <div class="page">
-        <div class="wikimenu">
-            {if $user->isAllowed('Article', 'add')}
-                <div>
-                    <div>{block wikiEdit}Edit{/block}</div>
-                    <ul>
-                        <li><a n:href="Edit:new">{_ ui.newArticle}</a></li>
-                        <li><a n:href="Edit:drafts">{_ ui.drafts}</a></li>
-                    </ul>
-                </div>
-            {/if}
+<div class="main">
 
-            <div>
-                <div>Lang</div>
-                <ul>
-                    {block translate}
-                    <li><a n:href="Homepage:default locale => 'cs'">{_ ui.cs}</a></li>
-                    <li><a n:href="Homepage:default locale => 'en'">{_ ui.en}</a></li>
-                    {/block}
-                </ul>
-            </div>
+	{control search}
 
-            <div>
-                <div>
-                    {if $user->isLoggedIn()}
-                        {$user->identity->name}
-                    {else}
-                        <a n:href="Sign:in">{_ ui.login}</a>
-                    {/if}
-                </div>
-                {if $user->isLoggedIn()}
-                    <ul>
-                        <li><a n:href="Sign:out">{_ ui.logout}</a></li>
-                    </ul>
-                {/if}
-            </div>
-        </div>
-    </div>
+	{include content}
 
+</div>
 
+<footer class="footer">
+	<p>
+		{if $user->isAllowed('Article', 'add')}
+			{block wikiEdit}Edit{/block}
+			<a n:href="Edit:new">{_ ui.newArticle}</a>
+			<a n:href="Edit:drafts">{_ ui.drafts}</a>
+		{/if}
 
+		{block translate}
+			<a n:href="Homepage:default locale => 'cs'">{_ ui.cs}</a>
+			<a n:href="Homepage:default locale => 'en'">{_ ui.en}</a>
+		{/block}
 
-	<div n:foreach="$flashes as $flash" class="alert alert-{$flash->type}">{$flash->message}</div>
+		{if $user->isLoggedIn()}
+			{$user->identity->name}
+		{else}
+			<a n:href="Sign:in">{_ ui.login}</a>
+		{/if}
 
-	<div class="main">
+		{if $user->isLoggedIn()}
+			<a n:href="Sign:out">{_ ui.logout}</a>
+		{/if}
 
-        {control search}
+		<br><br>
+		© 2008, 2017 Nette Foundation
+		| <a href="https://nette.org/terms-of-use">Terms of use</a> | If not stated otherwise, the contents are licensed
+		under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/cz/">Creative Commons CC-BY-SA</a>.
 
-        {include content}
+	</p>
 
-    </div>
+</footer>
 
+{if $production}
+	<script src="{$basePath}/script/site/app.min.js?{$version}"></script>
+{else}
+	<!-- build:js {$basePath}/script/site/app.min.js -->
+	<script src="{$basePath}/components/codemirror/lib/codemirror.js"></script>
+	<script src="{$basePath}/script/vendor/netteForms.js"></script>
+	<script src="{$basePath}/components/jquery/dist/jquery.js"></script>
+	<script src="{$basePath}/components/nette.ajax.js/nette.ajax.js"></script>
+	<script src="{$basePath}/components/select2/select2.js"></script>
+	<script src="{$basePath}/script/vendor/InlineAttachment/inline-attachment.js"></script>
+	<script src="{$basePath}/script/vendor/InlineAttachment/codemirror.inline-attachment.js"></script>
+	<script src="{$basePath}/script/site/main.js"></script>
+	<!-- endbuild -->
+{/if}
 
-
-	{include "nette.org/footer.latte"}
-
-	{include "nette.org/bar.latte"}
-
-
-    {if $production}
-        <script src="{$basePath}/script/site/app.min.js?{$version}"></script>
-    {else}
-        <!-- build:js {$basePath}/script/site/app.min.js -->
-        <script src="{$basePath}/components/codemirror/lib/codemirror.js"></script>
-        <script src="{$basePath}/script/vendor/netteForms.js"></script>
-        <script src="{$basePath}/components/jquery/dist/jquery.js"></script>
-        <script src="{$basePath}/components/nette.ajax.js/nette.ajax.js"></script>
-        <script src="{$basePath}/components/select2/select2.js"></script>
-        <script src="{$basePath}/script/vendor/InlineAttachment/inline-attachment.js"></script>
-        <script src="{$basePath}/script/vendor/InlineAttachment/codemirror.inline-attachment.js"></script>
-        <script src="{$basePath}/script/site/main.js"></script>
-        <!-- endbuild -->
-    {/if}
-
-
-
-    {block scripts}
-    	<script>
-    		var basePath = {$basePath};
-    	</script>
-    {/block}
+{block scripts}
+	<script>
+		var basePath = {$basePath};
+	</script>
+{/block}
 </body>
 </html>
