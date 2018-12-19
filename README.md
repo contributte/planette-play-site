@@ -1,9 +1,13 @@
 Pla.Nette
 ==========================
 
+-----
+
+This project is currently discontinued. Go to [blog.nette.org](http://blog.nette.org) or ask about more info at [@f3l1x](https://github.com/f3l1x) or [@chemix](https://github.com/chemix).
+
+----
+
 Note: Login page is : /sign/in and logout page /sign/out
-
-
 
 Installation
 ------------
