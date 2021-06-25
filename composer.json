@@ -1,32 +1,32 @@
 {
-    "name": "chemix/planette",
-    "description": "",
-    "homepage": "https://github.com/chemix/planette",
-    "type": "project",
-    "license": [
-        "MIT",
-        "BSD-3-Clause",
-        "GPL-2.0",
-        "GPL-3.0"
-    ],
-    "authors": [
-        {
-            "name": "Honza Cerny",
-            "homepage": "http://honzacerny.com"
-        },
-        {
-            "name": "Jirka Zraly",
-            "homepage": "https://twitter.com/Zraly"
-        }
-    ],
-    "require": {
-        "php": ">= 5.3.7",
-        "nette/nette": "~2.3",
-        "texy/texy": "v2.6",
-        "kukulich/fshl": "~2.1",
-        "brabijan/images": "@dev",
-        "kdyby/translation": "^2.2",
-        "nextras/migrations": "^3.0",
-        "kdyby/console": "^2.4"
+  "name": "chemix/planette",
+  "description": "",
+  "homepage": "https://github.com/chemix/planette",
+  "type": "project",
+  "license": [
+    "MIT",
+    "BSD-3-Clause",
+    "GPL-2.0",
+    "GPL-3.0"
+  ],
+  "authors": [
+    {
+      "name": "Honza Cerny",
+      "homepage": "http://honzacerny.com"
+    },
+    {
+      "name": "Jirka Zraly",
+      "homepage": "https://twitter.com/Zraly"
     }
+  ],
+  "require": {
+    "php": ">= 5.3.7",
+    "nette/nette": "~2.3",
+    "texy/texy": "v2.6",
+    "kukulich/fshl": "~2.1",
+    "brabijan/images": "@dev",
+    "kdyby/translation": "^2.2",
+    "nextras/migrations": "^3.0",
+    "kdyby/console": "^2.4"
+  }
 }
