@@ -16,7 +16,7 @@ Website ðŸš€ <a href="https://contributte.org">contributte.org</a> | Contact ðŸ‘
 
 ## Disclaimer
 
-| :warning: | This project is currently discontinued. Go to [blog.nette.org](http://blog.nette.org) or ask about more info at [@f3l1x](https://github.com/f3l1x) or [@chemix](https://github.com/chemix). |
+| :warning: | This project is no longer being maintained. Please use [blog.nette.org](http://blog.nette.org).
 |---| --- |
 
 ## Usage
